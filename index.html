@@ -1,0 +1,191 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+		<style>
+	.rect{  
+  margin:0 0 20px;
+  border:2px solid #333;
+  width:80%;
+  text-align:center;
+}
+.header{
+   margin:0 auto;
+   padding: 5px 10px;
+   width:90%;
+   border:2px solid #333;
+}
+.box{
+  margin: 5px 0;
+  border:2px solid #333;
+height:30px;
+}
+		</style>
+	<script>
+		function displayg(){
+			document.getElementById('general').style.display='';
+			document.getElementById('emergency').style.display='none';
+			document.getElementById('gen').style.backgroundColor = "red";
+			document.getElementById('eme').style.backgroundColor = "white";
+			//document.getElementById('eme').style.bgcolor='white';
+		}
+		function displaye(){
+			document.getElementById('general').style.display='none';
+			document.getElementById('emergency').style.display='';
+			document.getElementById('gen').style.backgroundColor = "white";
+			document.getElementById('eme').style.backgroundColor = "red";
+			//document.getElementById('gen').style.bgcolor='red';
+			//document.getElementById('eme').style.bgcolor='white';
+		}
+	function a()
+{
+ document.getElementById("health1").style.display='';
+ document.getElementById("hygine1").style.display='none';
+ document.getElementById("irrigation1").style.display='none';
+ document.getElementById("water1").style.display='none';
+ }
+function b()
+{
+document.getElementById("hygine1").style.display='';
+document.getElementById("health1").style.display='none';
+document.getElementById("irrigation1").style.display='none';
+document.getElementById("water1").style.display='none';
+  }
+function c()
+{
+ document.getElementById("irrigation1").style.display='';
+ document.getElementById("hygine1").style.display='none';
+ document.getElementById("health1").style.display='none';
+ document.getElementById("water1").style.display='none';
+  }
+function d()
+{
+ document.getElementById("water1").style.display='';
+ document.getElementById("health1").style.display='none';
+ document.getElementById("hygine1").style.display='none';
+ document.getElementById("irrigation1").style.display='none';
+}
+function validate() {
+	if(document.serviceform.service[0].checked==true||document.serviceform.service[1].checked==true){
+		return true;
+	}
+	else{
+		alert("please tick the confirmation box");
+		return false;
+	}
+}
+
+
+	</script>
+	</head>
+	<body class="container">
+		<div id="jumbotron" align="center"><h1>Service Automation</h1></div>
+		<div class="container-fluid" align="center">
+			<form method="POST" enctype="multipart/form-data" action="iserve.php" onSubmit=" return validate();" name="serviceform">
+			<div class="form-group">
+			<div align="center">
+			<div bgcolor="red" id="gen" class="col-lg-6 box" onClick="displayg()">GENERAL</div>
+			<div class="col-lg-6 box" id="eme" name="service" value="emergency"  onClick="displaye()">EMERGENCY</div><br>
+				<div id="general" align="center"><br>
+				<div class="well" align="center">				
+				<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4" align="center">
+					<label>Upload Image:<input type="file"  id="load" name="image" /></label></div></div>
+   				<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="col-xs-4">
+				<label for="comment">Description:</label>
+				<textarea class="form-control" name="description" rows="1" id="comment"></textarea></div></div>
+				<div class="row">
+				<div class="col-xs-4"></div><br>
+				<div class="col-xs-4">
+				<a href="#" class="btn btn-info btn-lg">
+				<span class="glyphicon glyphicon-map-marker"></span>Location</a>			
+				</div></div>
+				<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="radio"><label><input type="radio" name="problem" value="health" onclick="a()"/>Health</label>
+				</div></div>
+    				<div id="health1" style="display:none;">
+				<label  class="checkbox-inline"><input type="checkbox" name="health" value="ViralFevers"/>Viral Fevers</label>
+				<label class="checkbox-inline"><input type="checkbox" name="health" value="ChronicPhysicalIllness"/>Chronic Physical Illness</label>
+				<label class="checkbox-inline"><input type="checkbox" name="health" value="contagiousdiseases"/>Contagious diseases</label></div>
+				<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="radio" ><label><input type="radio"name="problem" onclick="b()" value="hygiene">Hygiene</label>
+				</div></div>
+     				<div id="hygine1" style="display:none;">
+      				<label class="checkbox-inline"><input type="checkbox" name="hygiene" value="wastage"/>Wastage</label>
+      				<label class="checkbox-inline"><input type="checkbox" name="hygiene" value="toilets"/>Toilets</label>
+     				</div>
+				<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="radio"><label><input type="radio" name="problem" onclick="c()" value="Irrigation">Irrigation</label>
+				</div></div>
+				<div id="irrigation1" style="display:none;">
+       				Adhaar id<input type="text" class="form-control" name="Aadhar"/>
+       				<label class="checkbox"><input type="checkbox" name="irrigation" value="electricity"/>electricity</label>
+       				<label class="checkbox"><input type="checkbox" name="irrigation" value="electricity"/>watersources</label>
+      				</div>
+				<div class="row">
+				<div class="col-xs-4"></div>
+				<div class="radio"><label><input type="radio" name="problem" onclick="d()" value="water"/>water</label>
+				</div>
+     				<div id="water1" style="display:none;" class="radio" >
+        			<label class="checkbox-inline"><input type="checkbox" name="water"/>Water</label>
+        			<label class="checkbox-inline"><input type="checkbox" name="water"/>Wastage</label>  
+  				</div></div>
+  				<div class="row">
+  					<label class="radio"><input type="radio" name="service" value="general"/>I Hereby Confirm that iam providing true and Relevant Data</label></div>
+				</div></div>
+				<div id="emergency" align="center" style="display:none;"><br>
+					<div class="well" align="center"><br>
+					<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4" align="center">
+					<label>Upload Image:<input type="file"  id="load" name="image"/></label></div></div>
+					<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+					<label for="comment">Description:</label>
+					<textarea class="form-control" rows="1" id="comment" name="description"></textarea></div></div>
+					<div class="row">
+					<div class="col-xs-4"></div><br>
+					<div class="col-xs-4">
+					<a href="#" class="btn btn-info btn-lg">
+					<span class="glyphicon glyphicon-map-marker"></span>Location</a></div></div>
+					<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="checkbox">
+						<label ><input type="checkbox" name="problem" value="fire">Fire</label>
+					</div></div>
+					<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="checkbox">
+						<label ><input type="checkbox" name="problem" value="hospitality">Hospitality</label>
+					</div></div>
+					<div class="row">
+					<div class="col-xs-4"></div>
+					<div class="checkbox">
+						<label ><input type="checkbox" name="problem" value="policestation">PoliceStation</label>
+					</div></div>
+					<div class="row">
+  					<label class="radio"><input type="radio" name="service" value="emergency"/>I Hereby Confirm that iam providing true and Relevant Data</label></div>
+				</div>
+			</div>
+			<input type="submit" class="btn btn-primary"/></div></div>
+			</form>
+		</div>
+	</body>
+<html>
+
